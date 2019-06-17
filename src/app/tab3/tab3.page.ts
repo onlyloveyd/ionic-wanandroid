@@ -10,7 +10,7 @@ import {System} from '../data/System';
 })
 export class Tab3Page implements OnInit {
 
-    activeIndex = 0;
+    curParent: System;
     systems: System[];
 
     constructor(private httpService: SelfHttpService) {
@@ -25,6 +25,13 @@ export class Tab3Page implements OnInit {
         this.httpService.getSystem().subscribe((res: JsonRoot<System>) => {
             console.log(res.data);
             this.systems = res.data;
+            if (this.systems.length > 0) {
+                this.curParent = this.systems[0];
+            }
         });
+    }
+
+    onParentClicked(item: System) {
+        this.curParent = item;
     }
 }

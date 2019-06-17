@@ -10,11 +10,17 @@
     <ion-grid>
         <ion-row>
             <ion-col size="4">
-                <ion-row *ngFor="let item of systems"> {{ item.name}}</ion-row>
+                <ion-row *ngFor="let item of systems" (click)="onParentClicked(item)">
+                    {{ item.name}}
+                </ion-row>
             </ion-col>
-            <!--            <ion-col size="8">-->
-            <!--                <ion-text *ngFor="let item of systems[activeIndex].children"> {{ item.name}}</ion-text>-->
-            <!--            </ion-col>-->
+            <ion-col size="8">
+                <div *ngIf="curParent!=null">
+                    <ion-row *ngFor="let item of this.curParent.children">
+                        {{ item.name}}
+                    </ion-row>
+                </div>
+            </ion-col>
         </ion-row>
     </ion-grid>
 
