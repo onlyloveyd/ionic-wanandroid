@@ -1,9 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Tab Two
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+    <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide *ngFor="let item of banners">
+            <ion-img [src]="item.imagePath"></ion-img>
+        </ion-slide>
+    </ion-slides>
+
+</ion-content>
