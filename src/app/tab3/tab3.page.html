@@ -6,23 +6,18 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-grid>
-        <ion-row>
-            <ion-col size="4">
-                <ion-row *ngFor="let item of systems" (click)="onParentClicked(item)">
-                    {{ item.name}}
-                </ion-row>
-            </ion-col>
-            <ion-col size="8">
-                <div *ngIf="curParent!=null">
-                    <ion-row *ngFor="let item of this.curParent.children">
-                        {{ item.name}}
-                    </ion-row>
-                </div>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-
-
-</ion-content>
+<div class="container">
+    <div class="parent-left">
+        <div *ngFor="let item of systems"
+             [ngClass]="this.curParent===item?'parent-item-active':'parent-item-default'"
+             (click)="onParentClicked(item)">
+            {{ item.name}}
+        </div>
+    </div>
+    <div class="parent-right" *ngIf="curParent!=null">
+        <div class="children-item" *ngFor="let item of this.curParent.children"
+             [routerLink]="['/blog-list']" [queryParams]="{parent:formatData(this.curParent)}">
+            {{ item.name}}
+        </div>
+    </div>
+</div>

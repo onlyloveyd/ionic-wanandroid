@@ -25,7 +25,7 @@ export class Tab2Page implements OnInit {
     }
 
     showBanner() {
-        this.httpService.getBanner().subscribe((res: JsonRoot<Banner>) => {
+        this.httpService.getBanner().subscribe((res: JsonRoot<Banner[]>) => {
             console.log(res);
             this.banners = res.data;
         });

@@ -20,9 +20,8 @@ export class Tab3Page implements OnInit {
         this.showSystem();
     }
 
-
     showSystem() {
-        this.httpService.getSystem().subscribe((res: JsonRoot<System>) => {
+        this.httpService.getSystem().subscribe((res: JsonRoot<System[]>) => {
             console.log(res.data);
             this.systems = res.data;
             if (this.systems.length > 0) {
@@ -33,5 +32,13 @@ export class Tab3Page implements OnInit {
 
     onParentClicked(item: System) {
         this.curParent = item;
+    }
+
+    randomColor() {
+        return '#' + ('00000' + (Math.random() * 0x1000000).toString(16)).slice(-6);
+    }
+
+    formatData(item: System) {
+        return JSON.stringify(item);
     }
 }

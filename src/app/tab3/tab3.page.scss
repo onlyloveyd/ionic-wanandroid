@@ -1,15 +1,50 @@
-.parent-text-active {
-
+.container {
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
 }
 
-.parent-text-default {
-
+.parent-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: scroll;
+  background: #f4f4f4;
 }
 
-.parent-bg-active {
-
+.parent-right {
+  display: flex;
+  flex-direction: row;
+  flex: 2;
+  overflow: auto;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
-.parent-bg-default {
+.parent-item-default {
+  padding: 16px 0 16px 0;
+  background: #f4f4f4;
+  color: #666666;
+  text-align: center;
+  font-size: 16px;
+}
 
+.parent-item-active {
+  padding: 16px 0 16px 0;
+  background: white;
+  font-weight: bold;
+  text-align: center;
+  color: #2a2a2a;
+  font-size: 16px;
+}
+
+.children-item {
+  margin: 2px 4px 2px 4px;
+  padding: 8px 16px 8px 16px;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #dfdfdf;
+  font-size: 16px;
+  color: #525252;
 }
