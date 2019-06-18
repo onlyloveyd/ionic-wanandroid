@@ -1,0 +1,21 @@
+.container{
+  height: 100%;
+}
+
+.indicator {
+  display: flex;
+  flex-direction: row;
+}
+
+.indicator-item-default {
+  padding: 2px 6px 2px 6px;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.indicator-item-active {
+  padding: 2px 6px 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+}

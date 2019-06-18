@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>blog-list</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <Tabs [useOnPan]="true"
+          [swipeable]="true"
+          [activeTab]="activeIndex"
+          [page]="5"
+          [tabBarTextStyle]="{'font-size': '12px'}"
+          [tabTitleSize]="150"
+          [tabBarActiveTextColor]="'#1890ff'"
+          (onChange)="onChange($event)"
+          (onTabClick)="onTabClick($event)">
+        <TabPane
+                *ngFor="let item of header"
+                [title]=item.name>
+            <ion-content style="height: 100%;">
+                <ion-refresher
+                        (ionRefresh)="refreshData($event)">
+                    <ion-refresher-content
+                            pullingIcon="arrow-dropdown"
+                            pullingText="下拉刷新..."
+                            refreshingSpinner="circles"
+                            refreshingText="刷新中...">
+
+                    </ion-refresher-content>
+                </ion-refresher>
+                <div *ngFor="let card of header">
+                    {{card.name}}
+                </div>
+                <ion-infinite-scroll
+                        (ionInfinite)="loadMore($event)">
+                    <ion-infinite-scroll-content
+                            loadingSpinner="bubbles"
+                            loadingText="加载中...">
+                    </ion-infinite-scroll-content>
+                </ion-infinite-scroll>
+            </ion-content>
+        </TabPane>
+    </Tabs>
+
+
+</ion-content>
