@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Blog} from '../../data/Blog';
 
+declare let window: any;
+
 @Component({
     selector: 'app-blog-item',
     templateUrl: './blog-item.component.html',
@@ -15,4 +17,7 @@ export class BlogItemComponent implements OnInit {
     ngOnInit() {
     }
 
+    openBlog(link: string) {
+       window.open('http://apache.org', '_blank', 'location=yes');
+    }
 }
