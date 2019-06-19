@@ -7,6 +7,7 @@ import {IonicModule} from '@ionic/angular';
 
 import {BlogListPage} from './blog-list.page';
 import {NgZorroAntdMobileModule} from 'ng-zorro-antd-mobile';
+import {BlogItemComponent} from '../components/blog-item/blog-item.component';
 
 const routes: Routes = [
     {
@@ -21,9 +22,9 @@ const routes: Routes = [
         FormsModule,
         IonicModule,
         RouterModule.forChild(routes),
-        NgZorroAntdMobileModule,
+        NgZorroAntdMobileModule
     ],
-    declarations: [BlogListPage]
+    declarations: [BlogListPage, BlogItemComponent]
 })
 export class BlogListPageModule {
 }

@@ -16,7 +16,7 @@
     </div>
     <div class="parent-right" *ngIf="curParent!=null">
         <div class="children-item" *ngFor="let item of this.curParent.children"
-             [routerLink]="['/blog-list']" [queryParams]="{parent:formatData(this.curParent)}">
+             [routerLink]="['/blog-list']" [queryParams]="{cid:item.id, title:item.name}">
             {{ item.name}}
         </div>
     </div>
