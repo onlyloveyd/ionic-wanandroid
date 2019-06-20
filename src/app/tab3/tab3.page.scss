@@ -19,6 +19,9 @@
   overflow: auto;
   flex-wrap: wrap;
   align-content: flex-start;
+  justify-content: flex-start;
+  justify-items: flex-start;
+  align-items: flex-start;
 }
 
 .parent-item-default {
@@ -39,6 +42,7 @@
 }
 
 .children-item {
+  display: block;
   margin: 2px 4px 2px 4px;
   padding: 8px 16px 8px 16px;
   border-radius: 6px;

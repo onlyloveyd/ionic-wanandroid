@@ -4,6 +4,8 @@ import {SelfHttpService} from '../service/HttpService';
 import {Blog} from '../data/Blog';
 import {JsonRoot} from '../data/JsonRoot';
 import {BlogBody} from '../data/BlogBody';
+import {NativeHttpService} from '../service/NativeHttpService';
+import {Platform} from '@ionic/angular';
 
 @Component({
     selector: 'app-blog-list',
@@ -20,7 +22,10 @@ export class BlogListPage implements OnInit {
 
     isEnd = false;
 
-    constructor(private activeRouter: ActivatedRoute, private httpService: SelfHttpService) {
+    constructor(private activeRouter: ActivatedRoute,
+                private nativeHttpService: NativeHttpService,
+                private httpService: SelfHttpService,
+                private plt: Platform) {
         this.cid = this.activeRouter.snapshot.queryParams.cid;
         this.title = this.activeRouter.snapshot.queryParams.title;
         this.getBlog(this.pageNum, this.cid, null);
@@ -29,46 +34,88 @@ export class BlogListPage implements OnInit {
 
     refreshData(event) {
         this.pageNum = 0;
-        this.httpService.getSystemBlogs(this.pageNum, this.cid).subscribe((res: JsonRoot<BlogBody>) => {
-            if (event != null) {
-                event.target.complete();
-            }
-            if (res.errorCode === 0) {
-                this.pageTotal = res.data.pageCount;
-                this.isEnd = this.pageNum + 1 === this.pageTotal;
-                this.blog = res.data.datas;
-            }
-        });
+        if (this.plt.is('mobile')) {
+            this.nativeHttpService.getSystemBlog(this.pageNum, this.cid).then((res) => {
+                const result: JsonRoot<BlogBody> = JSON.parse(res.data);
+                if (event != null) {
+                    event.target.complete();
+                }
+                if (result.errorCode === 0) {
+                    this.pageTotal = result.data.pageCount;
+                    this.isEnd = this.pageNum + 1 === this.pageTotal;
+                    this.blog = result.data.datas;
+                }
+            });
+        } else {
+            this.httpService.getSystemBlog(this.pageNum, this.cid).subscribe((res: JsonRoot<BlogBody>) => {
+                if (event != null) {
+                    event.target.complete();
+                }
+                if (res.errorCode === 0) {
+                    this.pageTotal = res.data.pageCount;
+                    this.isEnd = this.pageNum + 1 === this.pageTotal;
+                    this.blog = res.data.datas;
+                }
+            });
+        }
     }
 
     loadMore(event) {
         this.pageNum++;
-        this.httpService.getSystemBlogs(this.pageNum, this.cid).subscribe((res: JsonRoot<BlogBody>) => {
-            if (event != null) {
-                event.target.complete();
-            }
-            if (res.errorCode === 0) {
-                this.pageTotal = res.data.pageCount;
-                this.isEnd = this.pageNum + 1 === this.pageTotal;
-                this.blog = this.blog.concat(res.data.datas);
-            }
-        });
+        if (this.plt.is('mobile')) {
+            this.nativeHttpService.getSystemBlog(this.pageNum, this.cid).then((res) => {
+                const result: JsonRoot<BlogBody> = JSON.parse(res.data);
+                if (event != null) {
+                    event.target.complete();
+                }
+                if (result.errorCode === 0) {
+                    this.pageTotal = result.data.pageCount;
+                    this.isEnd = this.pageNum + 1 === this.pageTotal;
+                    this.blog = this.blog.concat(result.data.datas);
+                }
+            });
+        } else {
+            this.httpService.getSystemBlog(this.pageNum, this.cid).subscribe((res: JsonRoot<BlogBody>) => {
+                if (event != null) {
+                    event.target.complete();
+                }
+                if (res.errorCode === 0) {
+                    this.pageTotal = res.data.pageCount;
+                    this.isEnd = this.pageNum + 1 === this.pageTotal;
+                    this.blog = this.blog.concat(res.data.datas);
+                }
+            });
+        }
     }
 
     ngOnInit(): void {
     }
 
     getBlog(pageNum: number, cid: number, event) {
-        this.httpService.getSystemBlogs(pageNum, cid).subscribe((res: JsonRoot<BlogBody>) => {
-            if (event != null) {
-                event.target.complete();
-            }
-            if (res.errorCode === 0) {
-                this.pageTotal = res.data.pageCount;
-                this.isEnd = this.pageNum + 1 === this.pageTotal;
+        if (this.plt.is('mobile')) {
+            this.nativeHttpService.getSystemBlog(this.pageNum, this.cid).then((res) => {
+                const result: JsonRoot<BlogBody> = JSON.parse(res.data);
+                if (event != null) {
+                    event.target.complete();
+                }
+                if (result.errorCode === 0) {
+                    this.pageTotal = result.data.pageCount;
+                    this.isEnd = this.pageNum + 1 === this.pageTotal;
+                    this.blog = result.data.datas;
+                }
+            });
+        } else {
+            this.httpService.getSystemBlog(pageNum, cid).subscribe((res: JsonRoot<BlogBody>) => {
+                if (event != null) {
+                    event.target.complete();
+                }
+                if (res.errorCode === 0) {
+                    this.pageTotal = res.data.pageCount;
+                    this.isEnd = this.pageNum + 1 === this.pageTotal;
 
-                this.blog = res.data.datas;
-            }
-        });
+                    this.blog = res.data.datas;
+                }
+            });
+        }
     }
 }

@@ -9,15 +9,23 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import { NgZorroAntdMobileModule } from 'ng-zorro-antd-mobile';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
+import {NgZorroAntdMobileModule} from 'ng-zorro-antd-mobile';
+import {SelfHttpService} from './service/HttpService';
+import {NativeHttpService} from './service/NativeHttpService';
+import {HTTP} from '@ionic-native/http/ngx';
 
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, BrowserAnimationsModule, FormsModule, NgZorroAntdMobileModule],
+    imports: [BrowserModule, IonicModule.forRoot(),
+        AppRoutingModule, HttpClientModule, BrowserAnimationsModule,
+        FormsModule, NgZorroAntdMobileModule],
     providers: [
+        SelfHttpService,
+        NativeHttpService,
+        HTTP,
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}

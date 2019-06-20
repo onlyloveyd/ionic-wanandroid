@@ -16,7 +16,7 @@ export class SelfHttpService {
         return this.http.get('https://www.wanandroid.com/tree/json');
     }
 
-    getSystemBlogs(pageNum: number, cid: number) {
+    getSystemBlog(pageNum: number, cid: number) {
         return this.http.get('https://www.wanandroid.com/article/list/' + pageNum + '/json?cid=' + cid);
     }
 }
