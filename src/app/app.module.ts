@@ -15,13 +15,31 @@ import {NgZorroAntdMobileModule} from 'ng-zorro-antd-mobile';
 import {SelfHttpService} from './service/HttpService';
 import {NativeHttpService} from './service/NativeHttpService';
 import {HTTP} from '@ionic-native/http/ngx';
+import {BlogItemComponent} from './components/blog-item/blog-item.component';
+import {NavListComponent} from './components/nav-list/nav-list.component';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, BlogItemComponent, NavListComponent],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(),
-        AppRoutingModule, HttpClientModule, BrowserAnimationsModule,
-        FormsModule, NgZorroAntdMobileModule],
+    exports: [
+        IonicModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        NgZorroAntdMobileModule,
+        NavListComponent,
+        BlogItemComponent
+    ],
+    imports: [
+        IonicModule,
+        BrowserModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        NgZorroAntdMobileModule],
     providers: [
         SelfHttpService,
         NativeHttpService,
@@ -30,7 +48,7 @@ import {HTTP} from '@ionic-native/http/ngx';
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {
 }

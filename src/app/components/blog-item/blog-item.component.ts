@@ -9,6 +9,7 @@ declare let window: any;
     styleUrls: ['./blog-item.component.scss'],
 })
 export class BlogItemComponent implements OnInit {
+
     @Input() blog: Blog;
 
     constructor() {
@@ -18,6 +19,6 @@ export class BlogItemComponent implements OnInit {
     }
 
     openBlog(link: string) {
-       window.open('http://apache.org', '_blank', 'location=yes');
+        window.open(link, '_blank', 'location=yes');
     }
 }

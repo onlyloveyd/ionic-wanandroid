@@ -1,17 +1,14 @@
-import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { SystemPage } from './system.page';
+import {RouterModule} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {SystemPage} from './system.page';
+import {AppModule} from '../app.module';
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    RouterModule.forChild([{ path: '', component: SystemPage }])
-  ],
-  declarations: [SystemPage]
+    imports: [
+        AppModule,
+        RouterModule.forChild([{path: '', component: SystemPage}])
+    ],
+    declarations: [SystemPage]
 })
-export class SystemPageModule {}
+export class SystemPageModule {
+}
