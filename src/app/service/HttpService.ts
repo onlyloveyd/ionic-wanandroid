@@ -19,4 +19,12 @@ export class SelfHttpService {
     getSystemBlog(pageNum: number, cid: number) {
         return this.http.get('https://www.wanandroid.com/article/list/' + pageNum + '/json?cid=' + cid);
     }
+
+    getNavList() {
+        return this.http.get('https://www.wanandroid.com/navi/json');
+    }
+
+    getLatestProject(pageNum: number) {
+        return this.http.get('https://wanandroid.com/article/listproject/' + pageNum + '/json');
+    }
 }

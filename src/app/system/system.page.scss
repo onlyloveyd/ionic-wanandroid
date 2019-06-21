@@ -29,7 +29,7 @@
   background: #f4f4f4;
   color: #666666;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .parent-item-active {
@@ -38,17 +38,11 @@
   font-weight: bold;
   text-align: center;
   color: #2a2a2a;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .children-item {
-  display: block;
-  margin: 2px 4px 2px 4px;
-  padding: 8px 16px 8px 16px;
-  border-radius: 6px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #dfdfdf;
-  font-size: 16px;
-  color: #525252;
+  font-size: 12px;
+  padding: 2px 16px 2px 16px;
+  color: #2a2a2a;
 }

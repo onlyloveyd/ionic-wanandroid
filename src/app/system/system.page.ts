@@ -6,14 +6,16 @@ import {Platform} from '@ionic/angular';
 import {NativeHttpService} from '../service/NativeHttpService';
 
 @Component({
-    selector: 'app-tab3',
-    templateUrl: 'tab3.page.html',
-    styleUrls: ['tab3.page.scss']
+    selector: 'app-tab-system',
+    templateUrl: 'system.page.html',
+    styleUrls: ['system.page.scss']
 })
-export class Tab3Page implements OnInit {
+export class SystemPage implements OnInit {
 
     curParent: System;
     systems: System[];
+
+    colors = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'danger', 'light', 'medium', 'dark'];
 
     constructor(private nativeHttpService: NativeHttpService,
                 private httpService: SelfHttpService,
@@ -48,4 +50,7 @@ export class Tab3Page implements OnInit {
         this.curParent = item;
     }
 
+    randomColor(i: number) {
+        return this.colors[i % 9];
+    }
 }

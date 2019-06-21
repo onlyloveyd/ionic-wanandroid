@@ -4,13 +4,14 @@ import {JsonRoot} from '../data/JsonRoot';
 import {Banner} from '../data/Banner';
 import {Platform} from '@ionic/angular';
 import {NativeHttpService} from '../service/NativeHttpService';
+import {NavBody} from '../data/NavBody';
 
 @Component({
-    selector: 'app-tab2',
-    templateUrl: 'tab2.page.html',
-    styleUrls: ['tab2.page.scss']
+    selector: 'app-tab-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss']
 })
-export class Tab2Page implements OnInit {
+export class HomePage implements OnInit {
     slideOpts = {
         initialSlide: 0,
         speed: 400,
@@ -18,6 +19,7 @@ export class Tab2Page implements OnInit {
         autoplay: true,
     };
     banners: Banner[];
+    navList: NavBody[];
 
     constructor(private httpService: SelfHttpService, public plt: Platform,
                 private nativeHttpService: NativeHttpService) {
@@ -25,6 +27,7 @@ export class Tab2Page implements OnInit {
 
     ngOnInit(): void {
         this.showBanner();
+        this.showNavList();
     }
 
     showBanner() {
@@ -38,6 +41,21 @@ export class Tab2Page implements OnInit {
             this.httpService.getBanner().subscribe((res: JsonRoot<Banner[]>) => {
                 console.log(res);
                 this.banners = res.data;
+            });
+        }
+    }
+
+    showNavList() {
+        if (this.plt.is('mobile')) {
+            this.nativeHttpService.getNavList().then((res) => {
+                console.log(res.data);
+                const result: JsonRoot<NavBody[]> = JSON.parse(res.data);
+                this.navList = result.data;
+            });
+        } else {
+            this.httpService.getNavList().subscribe((res: JsonRoot<NavBody[]>) => {
+                console.log(res);
+                this.navList = res.data;
             });
         }
     }
