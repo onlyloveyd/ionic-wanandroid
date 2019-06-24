@@ -19,7 +19,7 @@ import {BlogItemComponent} from './components/blog-item/blog-item.component';
 import {NavListComponent} from './components/nav-list/nav-list.component';
 
 @NgModule({
-    declarations: [AppComponent, BlogItemComponent, NavListComponent],
+    declarations: [AppComponent],
     entryComponents: [],
     exports: [
         IonicModule,
@@ -28,8 +28,6 @@ import {NavListComponent} from './components/nav-list/nav-list.component';
         BrowserAnimationsModule,
         FormsModule,
         NgZorroAntdMobileModule,
-        NavListComponent,
-        BlogItemComponent
     ],
     imports: [
         IonicModule,

@@ -2,8 +2,9 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {ProjectPage} from './project.page';
-import {BlogItemComponent} from '../components/blog-item/blog-item.component';
-import {AppModule} from '../app.module';
+import {CommonModule} from '@angular/common';
+import {ComponentsModule} from '../components/components.module';
+import {IonicModule} from '@ionic/angular';
 
 const routes: Routes = [
     {
@@ -14,10 +15,12 @@ const routes: Routes = [
 
 @NgModule({
     imports: [
-        AppModule,
+        IonicModule,
+        CommonModule,
+        ComponentsModule,
         RouterModule.forChild(routes)
     ],
-    declarations: [ProjectPage, BlogItemComponent]
+    declarations: [ProjectPage]
 })
 export class ProjectPageModule {
 }
