@@ -1,8 +1,19 @@
 <div class="item-container" (click)="openBlog(blog.link)">
-    <div class="item-title"> {{blog.title}}</div>
-    <div class="item-footer">
-        <ion-label class="item-author">{{blog.author}}</ion-label>
-        <ion-label class="item-date">{{blog.niceDate}}</ion-label>
-    </div>
+    <ion-grid style="width: 100%">
+        <ion-row>
+            <ion-col size="10">
+                <div class="item-title"> {{blog.title}}</div>
+                <div class="item-desc"> {{blog.desc}}</div>
+                <div class="item-footer">
+                    <ion-label class="item-author">{{blog.author}}</ion-label>
+                    <ion-label class="item-date">{{blog.niceDate}}</ion-label>
+                </div>
+            </ion-col>
+            <ion-col size="2">
+                <ion-img [src]="blog.envelopePic"></ion-img>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
     <ion-item-divider></ion-item-divider>
 </div>
