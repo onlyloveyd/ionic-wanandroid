@@ -27,4 +27,12 @@ export class SelfHttpService {
     getLatestProject(pageNum: number) {
         return this.http.get('https://wanandroid.com/article/listproject/' + pageNum + '/json');
     }
+
+    getWeChatList() {
+        return this.http.get('https://wanandroid.com/wxarticle/chapters/json');
+    }
+
+    getWeChatBlogList(cid, pageNum) {
+        return this.http.get('https://wanandroid.com/wxarticle/list/' + cid + '/' + pageNum + '/json');
+    }
 }

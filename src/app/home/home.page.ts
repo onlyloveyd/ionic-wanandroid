@@ -5,6 +5,7 @@ import {Banner} from '../data/Banner';
 import {Platform} from '@ionic/angular';
 import {NativeHttpService} from '../service/NativeHttpService';
 import {NavBody} from '../data/NavBody';
+import {System} from '../data/System';
 
 @Component({
     selector: 'app-tab-home',
@@ -20,6 +21,9 @@ export class HomePage implements OnInit {
     };
     banners: Banner[];
     navList: NavBody[];
+    chatList: System[];
+
+    colors = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'danger', 'light', 'medium', 'dark'];
 
     constructor(private httpService: SelfHttpService, public plt: Platform,
                 private nativeHttpService: NativeHttpService) {
@@ -27,6 +31,7 @@ export class HomePage implements OnInit {
 
     ngOnInit(): void {
         this.showBanner();
+        this.showChatList();
         this.showNavList();
     }
 
@@ -58,5 +63,25 @@ export class HomePage implements OnInit {
                 this.navList = res.data;
             });
         }
+    }
+
+    showChatList() {
+        if (this.plt.is('mobile')) {
+            this.nativeHttpService.getWeChatList().then((res) => {
+                console.log(res.data);
+                const result: JsonRoot<System[]> = JSON.parse(res.data);
+                this.chatList = result.data;
+            });
+        } else {
+            this.httpService.getWeChatList().subscribe((res: JsonRoot<System[]>) => {
+                console.log(res);
+                this.chatList = res.data;
+            });
+        }
+    }
+
+
+    randomColor(index): string {
+        return this.colors[index % 9];
     }
 }
