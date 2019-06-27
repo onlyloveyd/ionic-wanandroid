@@ -15,8 +15,6 @@ import {NgZorroAntdMobileModule} from 'ng-zorro-antd-mobile';
 import {SelfHttpService} from './service/HttpService';
 import {NativeHttpService} from './service/NativeHttpService';
 import {HTTP} from '@ionic-native/http/ngx';
-import {BlogItemComponent} from './components/blog-item/blog-item.component';
-import {NavListComponent} from './components/nav-list/nav-list.component';
 
 @NgModule({
     declarations: [AppComponent],

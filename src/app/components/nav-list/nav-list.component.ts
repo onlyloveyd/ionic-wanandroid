@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NavBody} from '../../data/NavBody';
+import {System} from '../../data/System';
 
 @Component({
     selector: 'app-nav-list',
@@ -8,6 +9,7 @@ import {NavBody} from '../../data/NavBody';
 })
 export class NavListComponent implements OnInit {
     @Input() navList: NavBody[];
+    @Input() chatList: System[];
 
     colors = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'danger', 'light', 'medium', 'dark'];
 
@@ -15,10 +17,6 @@ export class NavListComponent implements OnInit {
     }
 
     ngOnInit() {
-    }
-
-    refreshData($event: CustomEvent<any>) {
-
     }
 
     randomColor(index): string {

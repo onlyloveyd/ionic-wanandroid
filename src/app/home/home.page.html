@@ -7,19 +7,10 @@
 </ion-header>
 
 <ion-content>
-    <ion-slides pager="true" [options]="slideOpts">
+    <ion-slides pager="true" [options]="slideOpts" style="height: 30%;">
         <ion-slide *ngFor="let item of banners">
             <ion-img [src]="item.imagePath"></ion-img>
         </ion-slide>
     </ion-slides>
-    <div class="nav-body">
-        <ion-label class="nav-title">公众号</ion-label>
-        <div class="nav-tags-body">
-            <ion-chip class="nav-name" *ngFor="let item of chatList;let i=index"
-                      [color]="randomColor(i)"
-                      [routerLink]="['/blog-list']"
-                      [queryParams]="{cid:item.id, title:item.name}"> {{item.name}}</ion-chip>
-        </div>
-    </div>
-    <app-nav-list [navList]="navList"></app-nav-list>
+    <app-nav-list [navList]="navList" [chatList]="chatList"></app-nav-list>
 </ion-content>
