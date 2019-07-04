@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -35,4 +35,18 @@ export class SelfHttpService {
     getWeChatBlogList(cid, pageNum) {
         return this.http.get('https://wanandroid.com/wxarticle/list/' + cid + '/' + pageNum + '/json');
     }
+
+    login(username, password) {
+        const param = new HttpParams({
+            fromObject: {
+                username,
+                password,
+            }
+        });
+        const options = {
+            params: param
+        };
+        return this.http.post('https://www.wanandroid.com/user/login', null, options);
+    }
+
 }
