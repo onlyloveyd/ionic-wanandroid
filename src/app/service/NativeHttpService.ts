@@ -35,4 +35,12 @@ export class NativeHttpService {
     getWeChatBlogList(cid, pageNum) {
         return this.http.get('https://wanandroid.com/wxarticle/list/' + cid + '/' + pageNum + '/json', {}, {});
     }
+
+    login(username, password) {
+        const body = {
+            username,
+            password,
+        };
+        return this.http.post('https://www.wanandroid.com/user/login', body, null);
+    }
 }

@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoadingController, ToastController} from '@ionic/angular';
-import {SelfHttpService} from "../service/HttpService";
-import {NativeHttpService} from "../service/NativeHttpService";
-import {HttpResponse} from "@angular/common/http";
+import {SelfHttpService} from '../service/HttpService';
+import {NativeHttpService} from '../service/NativeHttpService';
 
 @Component({
     selector: 'app-login',
@@ -33,9 +32,8 @@ export class LoginPage implements OnInit {
             this.presentToast('请输入密码').then();
             return;
         }
-        this.httpService.login(this.username, this.password).subscribe((res: HttpResponse<Object>) => {
+        this.nativeHttpService.login(this.username, this.password).then((res) => {
             console.log(res);
-            // console.log(res.headers('set-cookie'));
         });
 
     }
