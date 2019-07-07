@@ -1,19 +1,17 @@
 <div class="item-container" (click)="openBlog(blog.link)">
-    <ion-grid style="width: 100%">
-        <ion-row>
-            <ion-col size="10">
-                <div class="item-title"> {{blog.title}}</div>
-                <div class="item-desc"> {{blog.desc}}</div>
-                <div class="item-footer">
-                    <ion-label class="item-author">{{blog.author}}</ion-label>
-                    <ion-label class="item-date">{{blog.niceDate}}</ion-label>
-                </div>
-            </ion-col>
-            <ion-col size="2" *ngIf="blog.envelopePic!=''">
-                <ion-img [src]="blog.envelopePic"></ion-img>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+    <div class="item-content">
+        <div class="item-content-left">
+            <div class="item-title"> {{blog.title}}</div>
+            <div class="item-desc"> {{blog.desc}}</div>
 
-    <ion-item-divider></ion-item-divider>
+        </div>
+        <div class="item-content-right" *ngIf="blog.envelopePic!=''">
+            <ion-img [src]="blog.envelopePic"></ion-img>
+        </div>
+    </div>
+    <div class="item-footer">
+        <ion-label class="item-author">作者：{{blog.author}}</ion-label>
+        <ion-label class="item-date">{{blog.niceDate}}</ion-label>
+    </div>
+    <div class="divider"></div>
 </div>

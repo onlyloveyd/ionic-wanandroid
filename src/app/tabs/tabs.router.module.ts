@@ -35,11 +35,11 @@ const routes: Routes = [
                 ]
             },
             {
-                path: 'settings',
+                path: 'search',
                 children: [
                     {
                         path: '',
-                        loadChildren: '../settings/settings.module#SettingsPageModule'
+                        loadChildren: '../search/search.module#SearchPageModule'
                     }
                 ]
             },

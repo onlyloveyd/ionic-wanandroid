@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -32,8 +32,14 @@ export class SelfHttpService {
         return this.http.get('https://wanandroid.com/wxarticle/chapters/json');
     }
 
-    getWeChatBlogList(cid, pageNum) {
-        return this.http.get('https://wanandroid.com/wxarticle/list/' + cid + '/' + pageNum + '/json');
+    getSearchList(k, pageNum) {
+        const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+        const params = new HttpParams().set('k', k);
+        return this.http.post('https://www.wanandroid.com/article/query/' + pageNum + '/json', {}, {headers, params});
+    }
+
+    getHotKey() {
+        return this.http.get('https://www.wanandroid.com/hotkey/json');
     }
 
     login(username, password) {
@@ -44,7 +50,7 @@ export class SelfHttpService {
             }
         });
         const options = {
-            params: param
+            params: param,
         };
         return this.http.post('https://www.wanandroid.com/user/login', null, options);
     }

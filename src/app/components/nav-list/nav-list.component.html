@@ -12,6 +12,7 @@
         <ion-label class="nav-title">{{body.name}}</ion-label>
         <div class="nav-tags-body">
             <ion-chip class="nav-name" *ngFor="let item of body.articles;let i=index"
+                      (click)="directWebPage(item.link)"
                       [color]="randomColor(i)"> {{item.title}}</ion-chip>
         </div>
     </div>

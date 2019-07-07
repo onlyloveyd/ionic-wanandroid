@@ -5,14 +5,16 @@ import {BlogBody} from '../data/BlogBody';
 import {ActivatedRoute} from '@angular/router';
 import {NativeHttpService} from '../service/NativeHttpService';
 import {SelfHttpService} from '../service/HttpService';
-import {Platform} from '@ionic/angular';
+import {LoadingController, ToastController} from '@ionic/angular';
+import {environment} from '../../environments/environment';
+import {BasePage} from '../BasePage';
 
 @Component({
     selector: 'app-project',
     templateUrl: './project.page.html',
     styleUrls: ['./project.page.scss'],
 })
-export class ProjectPage implements OnInit {
+export class ProjectPage extends BasePage implements OnInit {
     isEnd = false;
     blog: Blog[];
 
@@ -22,16 +24,19 @@ export class ProjectPage implements OnInit {
     constructor(private activeRouter: ActivatedRoute,
                 private nativeHttpService: NativeHttpService,
                 private httpService: SelfHttpService,
-                private plt: Platform) {
-        this.getBlog(this.pageNum, null);
+                private loading: LoadingController,
+                private toast: ToastController
+    ) {
+        super(loading, toast);
     }
 
     ngOnInit() {
+        this.getBlog(this.pageNum, null);
     }
 
     refreshData(event) {
         this.pageNum = 0;
-        if (this.plt.is('mobile')) {
+        if (environment.isMobile) {
             this.nativeHttpService.getLatestProject(this.pageNum).then((res) => {
                 const result: JsonRoot<BlogBody> = JSON.parse(res.data);
                 if (event != null) {
@@ -42,7 +47,13 @@ export class ProjectPage implements OnInit {
                     this.isEnd = this.pageNum + 1 === this.pageTotal;
                     this.blog = result.data.datas;
                 }
+                this.dismissLoading();
+            }).catch(res => {
+                this.dismissLoading();
+                console.log(res);
+                this.showToast(res.toString()).then();
             });
+
         } else {
             this.httpService.getLatestProject(this.pageNum).subscribe((res: JsonRoot<BlogBody>) => {
                 if (event != null) {
@@ -53,13 +64,19 @@ export class ProjectPage implements OnInit {
                     this.isEnd = this.pageNum + 1 === this.pageTotal;
                     this.blog = res.data.datas;
                 }
+                this.dismissLoading();
+            }, (res) => {
+                this.dismissLoading();
+                console.log(res);
+                this.showToast(res.toString()).then();
             });
+
         }
     }
 
     loadMore(event) {
         this.pageNum++;
-        if (this.plt.is('mobile')) {
+        if (environment.isMobile) {
             this.nativeHttpService.getLatestProject(this.pageNum).then((res) => {
                 const result: JsonRoot<BlogBody> = JSON.parse(res.data);
                 if (event != null) {
@@ -70,7 +87,13 @@ export class ProjectPage implements OnInit {
                     this.isEnd = this.pageNum + 1 === this.pageTotal;
                     this.blog = this.blog.concat(result.data.datas);
                 }
+                this.dismissLoading();
+            }).catch(res => {
+                this.dismissLoading();
+                console.log(res);
+                this.showToast(res.toString()).then();
             });
+
         } else {
             this.httpService.getLatestProject(this.pageNum).subscribe((res: JsonRoot<BlogBody>) => {
                 if (event != null) {
@@ -81,12 +104,19 @@ export class ProjectPage implements OnInit {
                     this.isEnd = this.pageNum + 1 === this.pageTotal;
                     this.blog = this.blog.concat(res.data.datas);
                 }
+                this.dismissLoading();
+            }, (res) => {
+                this.dismissLoading();
+                console.log(res);
+                this.showToast(res.toString()).then();
             });
+
         }
     }
 
     getBlog(pageNum: number, event) {
-        if (this.plt.is('mobile')) {
+        this.showLoading().then();
+        if (environment.isMobile) {
             this.nativeHttpService.getLatestProject(this.pageNum).then((res) => {
                 const result: JsonRoot<BlogBody> = JSON.parse(res.data);
                 if (event != null) {
@@ -97,7 +127,13 @@ export class ProjectPage implements OnInit {
                     this.isEnd = this.pageNum + 1 === this.pageTotal;
                     this.blog = result.data.datas;
                 }
+                this.dismissLoading();
+            }).catch(res => {
+                this.dismissLoading();
+                console.log(res);
+                this.showToast(res.toString()).then();
             });
+
         } else {
             this.httpService.getLatestProject(pageNum).subscribe((res: JsonRoot<BlogBody>) => {
                 if (event != null) {
@@ -109,6 +145,11 @@ export class ProjectPage implements OnInit {
 
                     this.blog = res.data.datas;
                 }
+                this.dismissLoading();
+            }, (res) => {
+                this.dismissLoading();
+                console.log(res);
+                this.showToast(res.toString()).then();
             });
         }
     }

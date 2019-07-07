@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Blog} from '../../data/Blog';
-
 declare let window: any;
 
 @Component({
@@ -19,6 +18,6 @@ export class BlogItemComponent implements OnInit {
     }
 
     openBlog(link: string) {
-        window.open(link, '_blank', 'location=yes');
+        window.open(link, '_system', 'location=yes');
     }
 }

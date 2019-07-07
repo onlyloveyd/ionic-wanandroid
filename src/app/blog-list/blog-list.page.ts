@@ -5,7 +5,9 @@ import {Blog} from '../data/Blog';
 import {JsonRoot} from '../data/JsonRoot';
 import {BlogBody} from '../data/BlogBody';
 import {NativeHttpService} from '../service/NativeHttpService';
-import {Platform} from '@ionic/angular';
+import {environment} from '../../environments/environment';
+import {HTTPResponse} from '@ionic-native/http/ngx';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'app-blog-list',
@@ -19,23 +21,32 @@ export class BlogListPage implements OnInit {
 
     pageNum = 0;
     pageTotal: number;
-
     isEnd = false;
+
+    isSearch = false;
+    keyWord = '';
 
     constructor(private activeRouter: ActivatedRoute,
                 private nativeHttpService: NativeHttpService,
-                private httpService: SelfHttpService,
-                private plt: Platform) {
+                private httpService: SelfHttpService) {
         this.cid = this.activeRouter.snapshot.queryParams.cid;
         this.title = this.activeRouter.snapshot.queryParams.title;
-        this.getBlog(this.pageNum, this.cid, null);
+        this.isSearch = this.activeRouter.snapshot.queryParams.isSearch;
+        this.keyWord = this.activeRouter.snapshot.queryParams.keyWord;
+        this.refreshData(null);
     }
 
 
     refreshData(event) {
         this.pageNum = 0;
-        if (this.plt.is('mobile')) {
-            this.nativeHttpService.getSystemBlog(this.pageNum, this.cid).then((res) => {
+        if (environment.isMobile) {
+            let request: Promise<HTTPResponse>;
+            if (this.isSearch) {
+                request = this.nativeHttpService.getSearchList(this.keyWord, this.pageNum);
+            } else {
+                request = this.nativeHttpService.getSystemBlog(this.pageNum, this.cid);
+            }
+            request.then((res) => {
                 const result: JsonRoot<BlogBody> = JSON.parse(res.data);
                 if (event != null) {
                     event.target.complete();
@@ -47,7 +58,14 @@ export class BlogListPage implements OnInit {
                 }
             });
         } else {
-            this.httpService.getSystemBlog(this.pageNum, this.cid).subscribe((res: JsonRoot<BlogBody>) => {
+            // tslint:disable-next-line:ban-types
+            let request: Observable<Object>;
+            if (this.isSearch) {
+                request = this.httpService.getSearchList(this.keyWord, this.pageNum);
+            } else {
+                request = this.httpService.getSystemBlog(this.pageNum, this.cid);
+            }
+            request.subscribe((res: JsonRoot<BlogBody>) => {
                 if (event != null) {
                     event.target.complete();
                 }
@@ -62,8 +80,14 @@ export class BlogListPage implements OnInit {
 
     loadMore(event) {
         this.pageNum++;
-        if (this.plt.is('mobile')) {
-            this.nativeHttpService.getSystemBlog(this.pageNum, this.cid).then((res) => {
+        if (environment.isMobile) {
+            let request: Promise<HTTPResponse>;
+            if (this.isSearch) {
+                request = this.nativeHttpService.getSearchList(this.keyWord, this.pageNum);
+            } else {
+                request = this.nativeHttpService.getSystemBlog(this.pageNum, this.cid);
+            }
+            request.then((res) => {
                 const result: JsonRoot<BlogBody> = JSON.parse(res.data);
                 if (event != null) {
                     event.target.complete();
@@ -75,7 +99,14 @@ export class BlogListPage implements OnInit {
                 }
             });
         } else {
-            this.httpService.getSystemBlog(this.pageNum, this.cid).subscribe((res: JsonRoot<BlogBody>) => {
+            // tslint:disable-next-line:ban-types
+            let request: Observable<Object>;
+            if (this.isSearch) {
+                request = this.httpService.getSearchList(this.keyWord, this.pageNum);
+            } else {
+                request = this.httpService.getSystemBlog(this.pageNum, this.cid);
+            }
+            request.subscribe((res: JsonRoot<BlogBody>) => {
                 if (event != null) {
                     event.target.complete();
                 }
@@ -91,31 +122,4 @@ export class BlogListPage implements OnInit {
     ngOnInit(): void {
     }
 
-    getBlog(pageNum: number, cid: number, event) {
-        if (this.plt.is('mobile')) {
-            this.nativeHttpService.getSystemBlog(this.pageNum, this.cid).then((res) => {
-                const result: JsonRoot<BlogBody> = JSON.parse(res.data);
-                if (event != null) {
-                    event.target.complete();
-                }
-                if (result.errorCode === 0) {
-                    this.pageTotal = result.data.pageCount;
-                    this.isEnd = this.pageNum + 1 === this.pageTotal;
-                    this.blog = result.data.datas;
-                }
-            });
-        } else {
-            this.httpService.getSystemBlog(pageNum, cid).subscribe((res: JsonRoot<BlogBody>) => {
-                if (event != null) {
-                    event.target.complete();
-                }
-                if (res.errorCode === 0) {
-                    this.pageTotal = res.data.pageCount;
-                    this.isEnd = this.pageNum + 1 === this.pageTotal;
-
-                    this.blog = res.data.datas;
-                }
-            });
-        }
-    }
 }

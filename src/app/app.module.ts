@@ -15,6 +15,7 @@ import {NgZorroAntdMobileModule} from 'ng-zorro-antd-mobile';
 import {SelfHttpService} from './service/HttpService';
 import {NativeHttpService} from './service/NativeHttpService';
 import {HTTP} from '@ionic-native/http/ngx';
+import {IonicStorageModule} from "@ionic/storage";
 
 @NgModule({
     declarations: [AppComponent],
@@ -31,6 +32,7 @@ import {HTTP} from '@ionic-native/http/ngx';
         IonicModule,
         BrowserModule,
         IonicModule.forRoot(),
+        IonicStorageModule.forRoot(),
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,

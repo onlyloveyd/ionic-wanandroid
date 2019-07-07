@@ -5,12 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SettingsPage } from './settings.page';
+import { SearchPage } from './search.page';
+import {SearchBarModule} from "ng-zorro-antd-mobile";
 
 const routes: Routes = [
   {
     path: '',
-    component: SettingsPage
+    component: SearchPage
   }
 ];
 
@@ -19,8 +20,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SearchBarModule,
   ],
-  declarations: [SettingsPage]
+  declarations: [SearchPage]
 })
-export class SettingsPageModule {}
+export class SearchPageModule {}

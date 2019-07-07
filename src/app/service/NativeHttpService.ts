@@ -32,8 +32,15 @@ export class NativeHttpService {
         return this.http.get('https://wanandroid.com/wxarticle/chapters/json', {}, {});
     }
 
-    getWeChatBlogList(cid, pageNum) {
-        return this.http.get('https://wanandroid.com/wxarticle/list/' + cid + '/' + pageNum + '/json', {}, {});
+    getSearchList(k, pageNum) {
+        const body = {
+            k,
+        };
+        return this.http.post('https://www.wanandroid.com/article/query/' + pageNum + '/json', body, {});
+    }
+
+    getHotKey() {
+        return this.http.get('https://www.wanandroid.com/hotkey/json', {}, {});
     }
 
     login(username, password) {
