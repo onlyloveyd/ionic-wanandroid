@@ -5,7 +5,7 @@
 export const environment = {
     production: false,
     baseUrl: 'https://www.wanandroid.com/',
-    isMobile: false,
+    isMobile: true,
 };
 
 /*
