@@ -15,13 +15,10 @@ export class BasePage {
         toast.present();
     }
 
-    dismissToast() {
-        this.toastCtrl.dismiss().then();
-    }
-
     async showLoading() {
         const loading = await this.loadingCtrl.create({
-            message: '加载中……'
+            message: '加载中……',
+            mode: 'ios'
         });
         loading.present();
     }

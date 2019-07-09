@@ -1,0 +1,102 @@
+{
+  "_from": "cordova-plugin-lottie-splashscreen@0.6.0",
+  "_id": "cordova-plugin-lottie-splashscreen@0.6.0",
+  "_inBundle": false,
+  "_integrity": "sha1-fGuH7ereX6zgcN6fCXgszUstVUE=",
+  "_location": "/cordova-plugin-lottie-splashscreen",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-plugin-lottie-splashscreen@0.6.0",
+    "name": "cordova-plugin-lottie-splashscreen",
+    "escapedName": "cordova-plugin-lottie-splashscreen",
+    "rawSpec": "0.6.0",
+    "saveSpec": null,
+    "fetchSpec": "0.6.0"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/cordova-plugin-lottie-splashscreen/download/cordova-plugin-lottie-splashscreen-0.6.0.tgz",
+  "_shasum": "7c6b87edeade5face070de9f09782ccd4b2d5541",
+  "_spec": "cordova-plugin-lottie-splashscreen@0.6.0",
+  "_where": "F:\\IonicProject\\ionic-wanandroid",
+  "author": {
+    "name": "Tim Brust",
+    "email": "github@timbrust.de"
+  },
+  "bugs": {
+    "url": "https://github.com/timbru31/cordova-plugin-lottie-splashscreen/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-lottie-splashscreen",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "LottieSplashScreen Plugin",
+  "devDependencies": {
+    "@types/cordova": "^0.0.34",
+    "replace": "^1.1.0",
+    "standard-version": "^5.0.2",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
+  },
+  "engines": {
+    "cordovaDependencies": {
+      "0.1.3": {
+        "cordova": ">= 6.4.0",
+        "cordova-ios": ">=4.3.0"
+      },
+      "0.5.1": {
+        "cordova": ">= 6.4.0",
+        "cordova-android": ">=7.0.0",
+        "cordova-ios": ">=4.3.0"
+      },
+      "0.6.0": {
+        "apple-ios": ">=9.0.0",
+        "cordova": ">= 9.0.0",
+        "cordova-android": ">=7.0.0",
+        "cordova-ios": ">=5.0.0"
+      }
+    }
+  },
+  "homepage": "https://github.com/timbru31/cordova-plugin-lottie-splashscreen#readme",
+  "keywords": [
+    "cordova",
+    "cordova-plugin",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "lottie",
+    "lottie-android",
+    "lottie-ios",
+    "bodymovin",
+    "swift",
+    "kotlin"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-lottie-splashscreen",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timbru31/cordova-plugin-lottie-splashscreen.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint -c tslint.json 'www/**/*.ts' && swiftlint",
+    "prepublishOnly": "npm run build",
+    "release": "standard-version -s"
+  },
+  "standard-version": {
+    "scripts": {
+      "prebump": "node scripts/patch-plugin-xml-version.js",
+      "postchangelog": "npx prettier --write CHANGELOG.md"
+    }
+  },
+  "version": "0.6.0"
+}
