@@ -130,5 +130,9 @@ export class HomePage extends BasePage implements OnInit {
             });
         }
     }
+
+    onBannerClick(url: string) {
+        window.open(url, '_system');
+    }
 }
 

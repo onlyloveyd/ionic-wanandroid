@@ -8,7 +8,7 @@
 
 <ion-content>
     <ion-slides pager="true" [options]="slideOpts" style="height: 30%;">
-        <ion-slide *ngFor="let item of banners">
+        <ion-slide *ngFor="let item of banners" (click)="onBannerClick(item.url)">
             <ion-img [src]="item.imagePath"></ion-img>
         </ion-slide>
     </ion-slides>

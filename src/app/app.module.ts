@@ -15,7 +15,8 @@ import {NgZorroAntdMobileModule} from 'ng-zorro-antd-mobile';
 import {SelfHttpService} from './service/HttpService';
 import {NativeHttpService} from './service/NativeHttpService';
 import {HTTP} from '@ionic-native/http/ngx';
-import {IonicStorageModule} from "@ionic/storage";
+import {IonicStorageModule} from '@ionic/storage';
+import {AppMinimize} from '@ionic-native/app-minimize/ngx';
 
 @NgModule({
     declarations: [AppComponent],
@@ -44,6 +45,7 @@ import {IonicStorageModule} from "@ionic/storage";
         HTTP,
         StatusBar,
         SplashScreen,
+        AppMinimize,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
     bootstrap: [AppComponent],

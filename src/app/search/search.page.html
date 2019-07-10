@@ -6,7 +6,10 @@
     <div class="hot-key-container">
         <ion-label text-center class="hot-key-name"
                    *ngFor="let item of hotKeys;
-                   let i=index">{{item.name}}</ion-label>
+                   let i=index"
+                   [routerLink]="['/blog-list']"
+                   [queryParams]="{isSearch: true,keyWord: item.name,title: item.name + '搜索结果'}"
+        >{{item.name}}</ion-label>
     </div>
     <div class="search-history-prefix">
         <ion-label class="hot-key-prefix">历史记录</ion-label>
