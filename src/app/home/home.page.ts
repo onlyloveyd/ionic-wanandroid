@@ -129,11 +129,6 @@ export class HomePage extends BasePage implements OnInit {
                 this.showToast(res.toString()).then();
             });
         }
-
-    }
-
-    randomColor(index): string {
-        return this.colors[index % 9];
     }
 }
 
