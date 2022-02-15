@@ -20,7 +20,7 @@ export class SearchPage extends BasePage implements OnInit {
   hotKeys: HotKey[];
   history: Queue<string> = new Queue();
   colors = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'danger', 'light', 'medium', 'dark'];
-  keyWord: any;
+  keyWord = '';
 
   constructor(private loading: LoadingController,
               private toast: ToastController,
@@ -61,6 +61,7 @@ export class SearchPage extends BasePage implements OnInit {
   }
 
   doSearch() {
+    console.log(this.keyWord);
     if (this.keyWord !== '') {
       console.log(this.history);
       if (this.history.size() === this.historyLimit) {

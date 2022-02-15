@@ -1,4 +1,9 @@
-<!--<SearchBar [value]="keyWord" placeholder="Search" (onSubmit)="doSearch()"></SearchBar>-->
+<ion-searchbar
+  (search)="doSearch()"
+  [(ngModel)]="keyWord"
+  animated="true"
+  inputmode="search"
+  mode="ios" placeholder="Search"></ion-searchbar>
 <div class="container">
   <div class="search-history-prefix">
     <ion-label class="hot-key-prefix">热门搜索</ion-label>
@@ -6,7 +11,7 @@
   <div class="hot-key-container">
     <ion-label
       *ngFor="let item of hotKeys;
-                   let i=index" [queryParams]="{isSearch: true,keyWord: item.name,title: item.name + '搜索结果'}"
+      let i=index" [queryParams]="{isSearch: true,keyWord: item.name,title: item.name + '搜索结果'}"
       [routerLink]="['/blog-list']"
       class="hot-key-name"
       text-center

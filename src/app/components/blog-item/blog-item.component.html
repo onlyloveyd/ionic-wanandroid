@@ -1,11 +1,10 @@
 <div (click)="openBlog(blog.link)" class="item-container">
   <div class="item-content">
     <div class="item-content-left">
-      <div class="item-title"> {{blog.title}}</div>
+      <div [innerHTML]="blog.title" class="item-title"></div>
       <div class="item-desc"> {{blog.desc}}</div>
-
     </div>
-    <div *ngIf="blog.envelopePic!=''" class="item-content-right">
+    <div *ngIf="blog.envelopePic!==''" class="item-content-right">
       <ion-img [src]="blog.envelopePic"></ion-img>
     </div>
   </div>
