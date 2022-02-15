@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-explore-container',
@@ -8,8 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ExploreContainerComponent implements OnInit {
   @Input() name: string;
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 }

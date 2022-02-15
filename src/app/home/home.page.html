@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title text-center>
+      首页
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager="true" [options]="slideOpts" style="height: 30%;">
+    <ion-slide *ngFor="let item of banners" (click)="onBannerClick(item.url)">
+      <ion-img [src]="item.imagePath"></ion-img>
+    </ion-slide>
+  </ion-slides>
+  <app-nav-list [navList]="navList" [chatList]="chatList"></app-nav-list>
+</ion-content>

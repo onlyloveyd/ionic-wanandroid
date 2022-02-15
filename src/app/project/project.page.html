@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title text-center>
+      项目
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content style="height: 100%;">
+  <ion-refresher
+    (ionRefresh)="refreshData($event)"
+    slot="fixed">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="下拉刷新..."
+      refreshingSpinner="circles"
+      refreshingText="刷新中...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <app-blog-item *ngFor="let item of blog" [blog]="item"></app-blog-item>
+  <ion-infinite-scroll *ngIf="!isEnd"
+                       (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="加载中...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <div *ngIf="isEnd" class="endLineContainer">
+    <ion-label class="endLine">———— 我是有底线的 ————</ion-label>
+  </div>
+</ion-content>
