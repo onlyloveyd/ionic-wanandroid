@@ -1,7 +1,0 @@
-{
-  "name": "ionic-wanandroid",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
